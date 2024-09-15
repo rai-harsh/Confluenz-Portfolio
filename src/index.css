@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base{
+    .heading {
+        @apply font-beu text-white text-7xl sm:text-9xl font-bold tracking-wide;
+    }
+}
