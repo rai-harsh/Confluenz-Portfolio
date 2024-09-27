@@ -18,10 +18,56 @@ import slide_image_6 from './assets/6.jpg';
 import slide_image_7 from './assets/7.jpg';
 
 export default function Swipers() {
+  const images = [
+    {
+      text: "Portraits",
+      imgSrc: slide_image_1, // Replace with actual image source
+    },
+    {
+      text: "Fashion",
+      imgSrc: slide_image_2, // Replace with actual image source
+    },
+    {
+      text: "Sports",
+      imgSrc: slide_image_3, // Replace with actual image source
+    },
+    {
+      text: "Conferences",
+      imgSrc: slide_image_4, // Replace with actual image source
+    },
+    {
+      text: "Gatherings",
+      imgSrc: slide_image_5, // Replace with actual image source
+    },
+    {
+      text: "Landscapes",
+      imgSrc: slide_image_6, // Replace with actual image source
+    },
+    {
+      text: "Landscapes",
+      imgSrc: slide_image_7, // Replace with actual image source
+    },
+    
+  ];
+    
+  const slide= images.map((item)=>{
+    return (
+      <SwiperSlide >
+          <div className='group rounded-3xl'>
+            <div className='wrapper '>
+              <a className='effect group-hover:tracking-[0.5rem]'>{item.text}</a>
+            </div>
+            <img src={item.imgSrc} className="" alt="" />
+          </div>
+          
+        </SwiperSlide>
+    )
+  })
   return ( 
     
-    <div className="container text-center bg-gradient-to-b from-white via-gray-400 to-gray-500">
+    <div className="portfolio text-center bg-gradient-to-b from-white via-gray-400 to-gray-500">
       <h1 className='heading text-black mb-16'>PORTFOLIO</h1>
+      
       <Swiper
         effect={'coverflow'}
         grabCursor={true}
@@ -43,27 +89,8 @@ export default function Swipers() {
         modules={[EffectCoverflow, Pagination, Navigation]}
         className="swiper_container"
       >
-        <SwiperSlide >
-          <img src={slide_image_1} alt="" />
-        </SwiperSlide>
-        <SwiperSlide >
-          <img src={slide_image_1} alt="" />
-        </SwiperSlide>
-        <SwiperSlide >
-          <img src={slide_image_1} alt="" />
-        </SwiperSlide>
-        <SwiperSlide >
-          <img src={slide_image_1} alt="" />
-        </SwiperSlide>
-        <SwiperSlide >
-          <img src={slide_image_1} alt="" />
-        </SwiperSlide>
-        <SwiperSlide >
-          <img src={slide_image_1} alt="" />
-        </SwiperSlide>
-        <SwiperSlide >
-          <img src={slide_image_1} alt="" />
-        </SwiperSlide>
+        {/* All the slides are stored here */}
+        {slide}   
 
         <div className="slider-controler ">
           <div className="swiper-button-prev slider-arrow    sm:mt-1 ">

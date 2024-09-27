@@ -5,4 +5,28 @@
     .heading {
         @apply font-beu text-white text-7xl sm:text-9xl font-bold tracking-wide;
     }
+
+    .wrapper{
+        @apply bg-gray-700  w-11/12;
+        @apply rounded-full;
+        position: fixed;
+        opacity: 90%;
+        padding: 7px;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .effect{
+        font-weight: bold;
+        font-size: 24px;
+        color: #ffffff;
+        border-top: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+        padding: 10px 40px;
+        letter-spacing: 2px;
+        transition: all .25s;
+    }
+    
+
 }
