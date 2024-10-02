@@ -24,43 +24,43 @@ export default function Navbar() {
       ></div>
       
       <nav class="bg-local flex p-4 justify-between items-center  bg-gradient-to-b from-gray-800 via-gray-900 to-black border-b-2  border-gray-800">
-        <a href="#" id="brand " class="min-w-fit">
+        <a href="#" id="brand " class="min-w-fit ">
           <img src="./src/assets/conf.png" alt="conf-logo" className="w-20" />
         </a>
         <div id="nav-menu" class="hidden md:flex gap-10 ">
           <a
             href="#"
-            class="font-semibold min-w-fit hover:text-white text-slate-400 leading-4"
+            class="relative text-gray-300 font-display after:content-[''] after:absolute after:right-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-gray-300 after:transition-all after:duration-200 hover:after:w-full leading-4"
           >
             About
           </a>
           <a
             href="#"
-            class="font-semibold min-w-fit hover:text-white text-slate-400 leading-4"
+            class="relative text-gray-300 font-display after:content-[''] after:absolute after:right-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-gray-300 after:transition-all after:duration-200 hover:after:w-full leading-4"
           >
             Portfolio
           </a>
           <a
             href="#"
-            class="font-semibold min-w-fit hover:text-white text-slate-400 leading-4"
+            class="relative text-gray-300 font-display after:content-[''] after:absolute after:right-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-gray-300 after:transition-all after:duration-200 hover:after:w-full leading-4"
           >
             Workshops
           </a>
           <a
             href="#"
-            class="font-semibold min-w-fit hover:text-white text-slate-400 leading-4"
+            class="relative text-gray-300 font-display after:content-[''] after:absolute after:right-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-gray-300 after:transition-all after:duration-200 hover:after:w-full leading-4"
           >
             Services
           </a>
           <a
             href="#"
-            class="font-semibold min-w-fit hover:text-white text-slate-400 leading-4"
+            class="relative text-gray-300 font-display after:content-[''] after:absolute after:right-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-gray-300 after:transition-all after:duration-200 hover:after:w-full leading-4"
           >
             Contact us
           </a>
         </div>
-        <a href="#">
-          <i class="fa-brands fa-instagram text-white w-12 fa-xl hidden md:inline"></i>
+        <a href="#" className="hover:scale-125 transition-all duration-200">
+          <i class="fa-brands fa-instagram text-white w-12 fa-xl hidden md:inline "></i>
         </a>
 
         <button id="toggle" class="m-1 md:hidden" onClick={A}>

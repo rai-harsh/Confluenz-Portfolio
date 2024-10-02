@@ -32,7 +32,7 @@ export default function Testimonial() {
         <>
             
             <div className="Testimnoial mx-auto w-10/12 py-20 ">
-                <h1 class="font-display text-5xl font-bold border-b-4 border-gray-300 mb-16 pb-2">
+                <h1 class="font-display text-5xl font-bold border-b-4 border-gray-300 mb-16 pb-2 md:mt-16 md:mb-32">
                     Happy Clients
                 </h1>
                 <div className="reviews">

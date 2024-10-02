@@ -44,7 +44,7 @@ export default function Swipers() {
       imgSrc: slide_image_6, // Replace with actual image source
     },
     {
-      text: "Landscapes",
+      text: "Architecture",
       imgSrc: slide_image_7, // Replace with actual image source
     },
     
@@ -65,7 +65,7 @@ export default function Swipers() {
   })
   return ( 
     
-    <div className="portfolio text-center bg-gradient-to-b from-white via-gray-400 to-gray-500">
+    <div className="portfolio text-center bg-gradient-to-b from-white via-gray-400 to-gray-200">
       <h1 className='heading text-black mb-16'>PORTFOLIO</h1>
       
       <Swiper
