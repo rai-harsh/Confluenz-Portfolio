@@ -1,5 +1,5 @@
 import React from "react";
-import  "./Front.css"
+import  "../assets/styles/Front.css"
 export default function Front(){
     return(
         <>  
@@ -8,7 +8,7 @@ export default function Front(){
                     <div className=" w-fit flex flex-col gap-6 lg:items-start py-10 items-center ">
                         <h4 className="font-display text-white text-sm tracking-wide">PHOTOGRAPHY SOCIETY</h4>
                         
-                        <div class="sign">
+                        <div className="sign">
                         <h1 className="heading ">CONFLUENZ</h1>
                         </div>
                         <p className="font-display text-white text-sm ">Modern and creative photo sessions in any direction</p>

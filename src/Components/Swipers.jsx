@@ -5,59 +5,60 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import './Swiper.css'
+import '../assets/styles/Swiper.css'
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
+import { useEffect } from "react";
+import axios from 'axios'
 
 
-import slide_image_1 from './assets/1.jpg';
-import slide_image_2 from './assets/2.jpg';
-import slide_image_3 from './assets/3.jpg';
-import slide_image_4 from './assets/4.jpg';
-import slide_image_5 from './assets/8.jpg';
-import slide_image_6 from './assets/6.jpg';
-import slide_image_7 from './assets/7.jpg';
 
 export default function Swipers() {
-  const images = [
-    {
-      text: "Portraits",
-      imgSrc: slide_image_1, // Replace with actual image source
-    },
-    {
-      text: "Fashion",
-      imgSrc: slide_image_2, // Replace with actual image source
-    },
-    {
-      text: "Sports",
-      imgSrc: slide_image_3, // Replace with actual image source
-    },
-    {
-      text: "Conferences",
-      imgSrc: slide_image_4, // Replace with actual image source
-    },
-    {
-      text: "Gatherings",
-      imgSrc: slide_image_5, // Replace with actual image source
-    },
-    {
-      text: "Landscapes",
-      imgSrc: slide_image_6, // Replace with actual image source
-    },
-    {
-      text: "Architecture",
-      imgSrc: slide_image_7, // Replace with actual image source
-    },
-    
-  ];
-    
+  const [cp_images,setCp_images]= React.useState([]);
+  const [mono_images,setMono_images]= React.useState([]);
+
+  useEffect(() => {
+      axios
+      .get("/api/home")
+      .then((response) => {
+          
+          setCp_images(response.data.cpImages);  // Set cp_imagesZZZZ after logging the response
+          setMono_images(response.data.monoImages);  // Set cp_imagesZZZZ after logging the response
+      })
+      .catch((error) => {
+          console.log(error);
+      });
+  }, []);
+
+  var cp=[];
+  cp_images.map((item) => {
+      if (item.aspect_ratio === 'vertical') {
+          cp.push(item.image_url);
+      }
+  });
+  var mono=[];
+  
+// -----------------------------FIX THIS -------------------------------//
+
+  mono_images.map((item) => {
+      
+          mono.push(item.image_url);
+      
+  });
+  
+    const images=[];
+    for(var i =0 ; i<8 ; i++){
+      images.push(i);
+    }
+
+// --------------------------------------------------------------
   const slide= images.map((item)=>{
     return (
       <SwiperSlide >
           <div className='group rounded-3xl'>
             <div className='wrapper '>
-              <a className='effect group-hover:tracking-[0.5rem]'>{item.text}</a>
+              <a className='effect group-hover:tracking-[0.5rem]'>text</a>
             </div>
-            <img src={item.imgSrc} className="" alt="" />
+            <img src={`http://localhost:3000${mono[1]}`}className="" alt="" />
           </div>
           
         </SwiperSlide>

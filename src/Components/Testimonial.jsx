@@ -9,7 +9,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay'; // Import the autoplay styles
 
 import './Testimonial.css';
-import TestimonialsData from './TestimonialsData.js';
+import TestimonialsData from '../TestimonialsData.js';
 
 // Import required modules
 import { Pagination, Autoplay } from 'swiper/modules'; // Import Autoplay module
