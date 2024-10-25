@@ -48,15 +48,15 @@ export default function Footer() {
                             Have a question
                         </h4>
                         <div className="flex items-baseline gap-3  ">
-                            <i class="fa-solid fa-location-dot text-white"></i>
+                            <i className="fa-solid fa-location-dot text-white"></i>
                             <p className="text-gray-300"> Dr. Akhilesh Das Gupta Institute of Professional Studies, Zero Pusta Rd, Shastri Park, New Delhi</p>
                         </div>
                         <div className="flex items-center gap-3  ">
-                            <i class="fa-solid fa-phone text-white"></i>
+                            <i className="fa-solid fa-phone text-white"></i>
                             <p className="text-gray-300"> 9354514584</p>
                         </div>
                         <div className="flex items-center gap-3  ">
-                            <i class="fa-solid fa-envelope text-white"></i>
+                            <i className="fa-solid fa-envelope text-white"></i>
                             <p className="text-gray-300"> harshst0@gmial.com</p>
                         </div>
                     </div>

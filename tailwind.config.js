@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': '365px', // Adding the xs breakpoint
+      },
       keyframes: {
         slideIn: {
           '0%': { transform: 'translateX(-100%)' },
