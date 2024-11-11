@@ -8,21 +8,38 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay'; // Import the autoplay styles
 
-import './Testimonial.css';
-import TestimonialsData from '../TestimonialsData.js';
+import '../assets/styles/Testimonial.css'
 
 // Import required modules
 import { Pagination, Autoplay } from 'swiper/modules'; // Import Autoplay module
 
+import axios from "axios"
+
 export default function Testimonial() {
-    const cards = TestimonialsData.map(item => {
+
+    const [reviews, setReviews] = React.useState([]);
+
+    React.useEffect(()=>{
+        axios
+            .get('/api/get/reviews')
+            .then((response)=>{
+                setReviews(response.data)
+            })
+            .catch((error)=> console.log(error))
+    },[])
+
+    
+
+    const cards = reviews.map(item => {
         return (
-            <SwiperSlide className="flex flex-col" key={item.name}>
+            <SwiperSlide className="flex flex-col" key={item.id}>
                 <Review
-                    name={item.name}
-                    img={item.img}
-                    review={item.review}
-                    occupation={item.occupation}
+                    key={item.id}
+                    name={item.username}    
+                    img={item.profile_pic}
+                    review={item.review_text}
+                    // occupation={item.occupation}
+                    
                 />
             </SwiperSlide>
         );
@@ -32,7 +49,7 @@ export default function Testimonial() {
         <>
             
             <div className="Testimnoial mx-auto w-10/12 py-20 ">
-                <h1 class="font-display text-5xl font-bold border-b-4 border-gray-300 mb-16 pb-2 md:mt-16 md:mb-32">
+                <h1 className="font-display text-5xl font-bold border-b-4 border-gray-300 mb-16 pb-2 md:mt-16 md:mb-32">
                     Happy Clients
                 </h1>
                 <div className="reviews">

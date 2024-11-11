@@ -23,7 +23,7 @@
 .review::before{
     content: "";
     position: absolute;
-    bottom: 1rem;
+    bottom: -4rem;
     left: 65%;
     border: 3rem solid white;
     border-color: transparent;

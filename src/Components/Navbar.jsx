@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { NavLink  } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll';
 
 export default function Navbar() {
   const [isMenuOpen, setMenuOpen] = React.useState(false);
@@ -14,6 +15,14 @@ export default function Navbar() {
     setMenuOpen(!isMenuOpen);
   }
 
+  const navLinkClasses = ({ isActive }) => `
+  relative text-gray-300 font-display after:content-[''] after:absolute after:right-0 after:-bottom-1 
+  after:h-[2px] after:bg-gray-300 after:transition-all after:duration-200 leading-4 hover:after:w-full
+  ${isActive ? 'after:w-full' : 'after:w-0'}
+`;
+const mobileNavLinkClasses= ({isActive})=> `font-medium text-slate-300 border-b-2 border-slate-300 hover:bg-slate-500 p-4 rounded-md
+${isActive ? `bg-slate-500` : ``}`;
+
   return (
     <>
       <div
@@ -24,46 +33,51 @@ export default function Navbar() {
         onClick={B}
       ></div>
 
-      <nav className="bg-local flex p-4 justify-between items-center bg-gradient-to-b from-gray-800 via-gray-900 to-black border-b-2 border-gray-800">
-        <Link to="/Photowalks" className="min-w-fit">
+      <nav id="navbar" className="bg-local flex p-4 justify-between items-center bg-gradient-to-b from-gray-800 via-gray-900 to-black border-b-2 border-gray-800">
+        <NavLink to="/Photowalks" className="min-w-fit">
           <img src="./src/assets/conf.png" alt="conf-logo" className="w-20" />
-        </Link>
+        </NavLink>
         <div id="nav-menu" className="hidden md:flex gap-10">
-          <Link
+          <NavLink
             to="/"
-            className="relative text-gray-300 font-display after:content-[''] after:absolute after:right-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-gray-300 after:transition-all after:duration-200 hover:after:w-full leading-4"
+            className={navLinkClasses}
           >
             Home
-          </Link>
-          <Link
-            to="/Portfolio"
-            className="relative text-gray-300 font-display after:content-[''] after:absolute after:right-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-gray-300 after:transition-all after:duration-200 hover:after:w-full leading-4"
+          </NavLink>
+          <ScrollLink
+            to="portfolio" // ID of the Portfolio section
+            smooth={true}
+            duration={500}
+            offset={-70} // Adjust offset for fixed navbar height
+            className="relative text-gray-300 font-display after:content-[''] after:absolute after:right-0 after:-bottom-1 
+              after:h-[2px] after:bg-gray-300 after:transition-all after:duration-200 leading-4 hover:after:w-full after:w-0"
           >
             Portfolio
-          </Link>
-          <Link
+          </ScrollLink>
+
+          <NavLink
             to="/Photowalks"
-            className="relative text-gray-300 font-display after:content-[''] after:absolute after:right-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-gray-300 after:transition-all after:duration-200 hover:after:w-full leading-4"
+            className={navLinkClasses}
           >
             Photowalks
-          </Link>
-          <Link
-            to="/Services"
-            className="relative text-gray-300 font-display after:content-[''] after:absolute after:right-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-gray-300 after:transition-all after:duration-200 hover:after:w-full leading-4"
+          </NavLink>
+          <NavLink
+            to="/Events"
+            className={navLinkClasses}
           >
-            Services
-          </Link>
-          <Link
-            to="/Contact"
-            className="relative text-gray-300 font-display after:content-[''] after:absolute after:right-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-gray-300 after:transition-all after:duration-200 hover:after:w-full leading-4"
+            Events
+          </NavLink>
+          <NavLink
+            to="/AboutUs"
+            className={navLinkClasses}
           >
-            Contact Us
-          </Link>
+            About us
+          </NavLink>
         </div>
 
-        <Link to="/Instagram" className="hover:scale-125 transition-all duration-200">
+        <NavLink to="/Instagram" className="hover:scale-125 transition-all duration-200">
           <i className="fa-brands fa-instagram text-white w-12 fa-xl hidden md:inline"></i>
-        </Link>
+        </NavLink>
 
         <button id="toggle" className="m-1 md:hidden" onClick={A}>
           <i className="fa-solid fa-bars fa-2xl text-white"></i>
@@ -79,40 +93,43 @@ export default function Navbar() {
               : "hidden"
           } inset-0 md:hidden bg-black z-40 flex flex-col px-6 pb-8 pt-3 w-2/3 min-w-fit fixed h-screen`}
         >
-          <Link to="/Photowalks" className="min-w-fit">
+          <NavLink to="/Photowalks" className="min-w-fit">
             <img src="./src/assets/conf.png" alt="conf-logo" className="w-20" />
-          </Link>
+          </NavLink>
           <div className="w-full h-1 bg-slate-300 mt-4 rounded-full"></div>
-          <Link
+          <NavLink
             to="/"
-            className="font-medium text-slate-300 border-b-2 border-slate-300 hover:transition-all hover:duration-500 hover:ease-out hover:bg-slate-500 hover:text-white p-4 rounded-md"
+            className={mobileNavLinkClasses}
           >
             Home
-          </Link>
-          <Link
-            to="/Portfolio"
-            className="font-medium text-slate-300 border-b-2 border-slate-300 hover:transition-all hover:duration-500 hover:ease-out hover:bg-slate-500 hover:text-white p-4 rounded-md"
+          </NavLink>
+          <ScrollLink
+            to="portfolio" // ID of the Portfolio section
+            smooth={true}
+            duration={500}
+            offset={-70} // Adjust offset for fixed navbar height
+            className="font-medium text-slate-300 border-b-2 border-slate-300 hover:bg-slate-500 p-4 rounded-md"
           >
             Portfolio
-          </Link>
-          <Link
-            to="/Workshops"
-            className="font-medium text-slate-300 border-b-2 border-slate-300 hover:transition-all hover:duration-500 hover:ease-out hover:bg-slate-500 hover:text-white p-4 rounded-md"
+          </ScrollLink>
+          <NavLink
+            to="/Photowalks"
+            className={mobileNavLinkClasses}
           >
-            Workshops
-          </Link>
-          <Link
-            to="/Services"
-            className="font-medium text-slate-300 border-b-2 border-slate-300 hover:transition-all hover:duration-500 hover:ease-out hover:bg-slate-500 hover:text-white p-4 rounded-md"
+            Photowalks
+          </NavLink>
+          <NavLink
+            to="/Events"
+            className={mobileNavLinkClasses}
           >
-            Services
-          </Link>
-          <Link
-            to="/Contact"
-            className="font-medium text-slate-300 border-b-2 border-slate-300 hover:transition-all hover:duration-500 hover:ease-out hover:bg-slate-500 hover:text-white p-4 rounded-md"
+            Events
+          </NavLink>
+          <NavLink
+            to="/AboutUs"
+            className={mobileNavLinkClasses}
           >
-            Contact Us
-          </Link>
+            About Us
+          </NavLink>
         </div>
       </nav>
     </>

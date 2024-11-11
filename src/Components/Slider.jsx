@@ -1,8 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Slider() {
+    const [categories, setCategories] = useState([]);
     const initialTranslateLTR = -48 * 4;
     const initialTranslateRTL = 36 * 4;
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await axios.get('/api/categories'); // Replace with your actual backend URL
+                setCategories(response.data.map((category) => category.category));
+            } catch (error) {
+                console.error("Error fetching categories:", error);
+            }
+        };
+
+        fetchCategories();
+
+        const line4 = document.querySelectorAll('#line4');
+        if (line4.length > 0) {
+            setupIntersectionObserver(line4, true, 0.8);
+        }
+
+        return () => {
+            line4.forEach(element => {
+                const scrollHandlerBound = element.scrollHandlerBound;
+                if (scrollHandlerBound) {
+                    document.removeEventListener('scroll', scrollHandlerBound);
+                }
+            });
+        };
+    }, []);
 
     function scrollHandler(element, isLTR, speed) {
         const translateX = (window.innerHeight - element.getBoundingClientRect().top) * speed;
@@ -23,7 +52,6 @@ export default function Slider() {
             if (isIntersecting) {
                 const scrollHandlerBound = () => scrollHandler(entries[0].target, isLTR, speed);
                 document.addEventListener('scroll', scrollHandlerBound);
-                // Save reference to bound handler for cleanup
                 entries[0].target.scrollHandlerBound = scrollHandlerBound;
             } else {
                 const scrollHandlerBound = entries[0].target.scrollHandlerBound;
@@ -34,69 +62,30 @@ export default function Slider() {
         };
 
         const intersectionObserver = new IntersectionObserver(intersectionCallback);
-
-        // Observe each element individually
         elements.forEach(element => intersectionObserver.observe(element));
     }
 
-    useEffect(() => {
-        const line4 = document.querySelectorAll('#line4');
-        if (line4.length > 0) {
-            console.log(line4); // Verify element is being selected
-            setupIntersectionObserver(line4, true, 0.8);
-        }
-
-        // Clean up event listener when component unmounts
-        return () => {
-            line4.forEach(element => {
-                const scrollHandlerBound = element.scrollHandlerBound;
-                if (scrollHandlerBound) {
-                    document.removeEventListener('scroll', scrollHandlerBound);
-                }
-            });
-        };
-    }, []); // Empty array ensures this runs once when the component mounts
-
     return (
-        <div id="features-line" className="container mt-0 lg:mt-4">
+        <div id="features-line" className="container mt-0 lg:mt-4 mx-auto">
             <div className="border border-gray-300 rounded-lg overflow-hidden flex justify-center p-4">
                 <div id="line4" className="flex gap-8 p-6 transition duration-500">
-                    <h3 className="my-0 mx-2 whitespace-nowrap font-display text-2xl font-semibold leading-7">
-                        Fashion 
-                    </h3>
+                    {categories.map((category, index) => (
+                        <React.Fragment key={index}>
+                            <h3 className="my-0 mx-2 whitespace-nowrap font-display text-2xl font-semibold leading-7">
+                                {category}
+                            </h3>
+                            {index < categories.length - 1 && <span>•</span>}
+                        </React.Fragment>
+                    ))}
                     <span>•</span>
-                    <h3 className="my-0 mx-2 whitespace-nowrap font-display text-2xl font-semibold leading-7">
-                        Family functions
-                    </h3>
-                    <span>•</span>
-                    <h3 className="my-0 mx-2 whitespace-nowrap font-display text-2xl font-semibold leading-7">
-                        Portraits
-                    </h3>
-                    <span>•</span>
-                    <h3 className="my-0 mx-2 whitespace-nowrap font-display text-2xl font-semibold leading-7">
-                        Pre wedding
-                    </h3>
-                    <span>•</span>
-                    <h3 className="my-0 mx-2 whitespace-nowrap font-display text-2xl font-semibold leading-7">
-                        Conferences
-                    </h3>
-                    <span>•</span>
-                    <h3 className="my-0 mx-2 whitespace-nowrap font-display text-2xl font-semibold leading-7">
-                        Product Photography
-                    </h3>
-                    <span>•</span>
-                    <h3 className="my-0 mx-2 whitespace-nowrap font-display text-2xl font-semibold leading-7">
-                        Launch at startup
-                    </h3>
-                    <span>•</span>
-                    <h3 className="my-0 mx-2 whitespace-nowrap font-display text-2xl font-semibold leading-7">
-                        Offline Support
-                    </h3>
-                    <span>•</span>
-                    <h3 className="my-0 mx-2 whitespace-nowrap font-display text-2xl font-semibold leading-7">
-                        Good Signing
-                    </h3>
-                    <span>•</span>
+                    {categories.map((category, index) => (
+                        <React.Fragment key={index}>
+                            <h3 className="my-0 mx-2 whitespace-nowrap font-display text-2xl font-semibold leading-7">
+                                {category}
+                            </h3>
+                            {index < categories.length - 1 && <span>•</span>}
+                        </React.Fragment>
+                    ))}
                 </div>
             </div>
         </div>
