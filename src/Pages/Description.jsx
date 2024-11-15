@@ -22,7 +22,7 @@ const ParallaxCover = ({ imageSrc }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
+console.log( `url(${imageSrc})`);
   return (
     <div
       className="h-48 xs:h-56 sm:h-72 md:h-96 relative overflow-hidden bg-cover bg-center bg-fixed"
@@ -73,16 +73,16 @@ export default function Walk() {
       fetchImages();
     }
   }, [id]);
-  console.log(images)
-  console.log(`/api/${type}/${id}`);
-  const coverImage = `http://localhost:4000${items[0]?.cover_img}` || "Loading...";
-  const location = items[0]?.locations || items[0]?.venue || "Loading...";
+ //console.log(images)
+  
+ const coverImage = items.length > 0 ? `http://localhost:4000${items[0].cover_img}` : "";
+ const location = items[0]?.locations || items[0]?.venue || "Loading...";
   const date = items[0]?.date?.slice(0, 10) || "Loading...";
   const description = items[0]?.description || "Loading...";
   const eventName = type === "Events" ? items[0]?.name : "";
 
   const [isLocationVisible, setLocationVisible] = useState(false);
-
+   //console.log(coverImage); 
   useEffect(() => {
     setTimeout(() => setLocationVisible(true), 700);
   }, []);
